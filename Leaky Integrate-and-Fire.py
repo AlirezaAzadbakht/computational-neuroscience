@@ -15,7 +15,7 @@ def i_random(x, i):
 
 
 def lif(time=100, steps=0.125, i_function=i_interval, u_rest=0, r=1, c=10, i=5, threshold=2, f_i_plot=False,
-        save_name="LIF"):
+        save_name="none"):
     timer = np.arange(0, time + steps, steps)
     tm = r * c
     u = [u_rest] * len(timer)
@@ -60,10 +60,13 @@ def lif(time=100, steps=0.125, i_function=i_interval, u_rest=0, r=1, c=10, i=5, 
         xlabel('I')
         title('F-I plot')
         grid(True)
-    savefig('figures/{}.png'.format(save_name))
+    if save_name != 'none':
+        savefig('figures/{}.png'.format(save_name))
     show()
 
 
+lif(u_rest=0, r=1, c=5, i=5, threshold=2, f_i_plot=True)
+lif(u_rest=0, r=1, c=10, i=5, threshold=2, f_i_plot=True)
 lif(u_rest=0, r=1, c=10, i=5, threshold=2, f_i_plot=True, save_name="LIF1")
 lif(u_rest=2, r=10, c=5, i=2, threshold=5, f_i_plot=True, save_name="LIF2")
 lif(u_rest=2, r=5, c=7, i=1, threshold=5, f_i_plot=True, save_name="LIF3")

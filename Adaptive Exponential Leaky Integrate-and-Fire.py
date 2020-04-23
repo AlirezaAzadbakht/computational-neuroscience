@@ -43,7 +43,7 @@ def AdEx(time=100, steps=0.125, i_function=i_interval, u_rest=0, r=1, c=10, i=5,
     # plotting
     if draw_plot:
         fig = figure(num=None, figsize=(20, 10))
-        fig.suptitle('Exponential Integrate-and-Fire\n\n' + "R: " + str(r) + "    C: " + str(c) + "    I: " + str(i)
+        fig.suptitle('Adaptive Exponential Integrate-and-Fire\n\n' + "R: " + str(r) + "    C: " + str(c) + "    I: " + str(i)
                      + "    THRESHOLD: " + str(threshold) + "    DELTA T: " + str(delta_t)
                      + "    THETA RH: " + str(theta_rh) + "    a: " + str(a) + "    b: " + str(b) + "    Tw: " + str(tw),
                      fontsize=14, fontweight='bold')
@@ -85,14 +85,16 @@ def AdEx(time=100, steps=0.125, i_function=i_interval, u_rest=0, r=1, c=10, i=5,
     return spike_t
 
 
-AdEx(a=1 , b=1 , tw=4, f_i_plot=True, save_name="AdEx1")
-AdEx(a=1 , b=4 , tw=4, f_i_plot=True, save_name="AdEx2")
-AdEx(a=5 , b=4 , tw=4, f_i_plot=True, save_name="AdEx3")
-AdEx(threshold=5, theta_rh=4, a=1, b=1, tw=4, f_i_plot=True, save_name="AdEx4")
-AdEx(threshold=5, theta_rh=4, i=10, a=1, b=1, tw=1, f_i_plot=True, save_name="AdEx5")
-
-AdEx(a=1 , b=1 , tw=4, i_function=i_random, save_name="AdEx_random1")
-AdEx(a=1 , b=4 , tw=4, i_function=i_random, save_name="AdEx_random2")
-AdEx(a=5 , b=4 , tw=4, i_function=i_random, save_name="AdEx_random3")
-AdEx(threshold=5, theta_rh=4, a=1, b=1, tw=4, i_function=i_random, save_name="AdEx_random4")
-AdEx(threshold=5, theta_rh=4, i=10, a=1, b=1, tw=1, i_function=i_random, save_name="AdEx_random5")
+AdEx(a=1 , b=1 , tw=4, f_i_plot=True)
+AdEx(a=10 , b=1 , tw=4, f_i_plot=True)
+# AdEx(a=1 , b=1 , tw=4, f_i_plot=True, save_name="AdEx1")
+# AdEx(a=1 , b=4 , tw=4, f_i_plot=True, save_name="AdEx2")
+# AdEx(a=5 , b=4 , tw=4, f_i_plot=True, save_name="AdEx3")
+# AdEx(threshold=5, theta_rh=4, a=1, b=1, tw=4, f_i_plot=True, save_name="AdEx4")
+# AdEx(threshold=5, theta_rh=4, i=10, a=1, b=1, tw=1, f_i_plot=True, save_name="AdEx5")
+#
+# AdEx(a=1 , b=1 , tw=4, i_function=i_random, save_name="AdEx_random1")
+# AdEx(a=1 , b=4 , tw=4, i_function=i_random, save_name="AdEx_random2")
+# AdEx(a=5 , b=4 , tw=4, i_function=i_random, save_name="AdEx_random3")
+# AdEx(threshold=5, theta_rh=4, a=1, b=1, tw=4, i_function=i_random, save_name="AdEx_random4")
+# AdEx(threshold=5, theta_rh=4, i=10, a=1, b=1, tw=1, i_function=i_random, save_name="AdEx_random5")
