@@ -39,7 +39,7 @@ def lif(time=100, steps=0.125, i_function=i_interval, u_rest=0, r=1, c=10, i=5, 
     title('U-Time plot')
     grid(True)
 
-    subplot(222)
+    subplot(223)
     plot(timer, i_input)
     ylabel('I')
     xlabel('Time')
@@ -54,7 +54,7 @@ def lif(time=100, steps=0.125, i_function=i_interval, u_rest=0, r=1, c=10, i=5, 
                 i_y[j] = 1 / (-1 * tm * (math.log(1 - (threshold - u_rest) / (r * j))))
             except:
                 i_y[j] = 0
-        subplot(223)
+        subplot(222)
         plot(i_x, i_y)
         ylabel('F')
         xlabel('I')
