@@ -6,7 +6,7 @@ class Neuron:
     def __init__(self, type="exc", index=0):  # exc/inh
         self.index = index
         self.type = type
-        self.time = 50
+        self.time = 100
         self.steps = 0.25
         self.u_rest = 0
         self.r = 10
@@ -20,9 +20,9 @@ class Neuron:
         self.u = [self.u_rest] * len(self.timer)
 
     def update(self, j, input):
-        self.u[j] = self.u[j - 1] + (-self.u[j - 1] + self.r * input) / self.tm * self.dt
+        self.u[j] += self.u[j - 1] + (-self.u[j - 1] + self.r * input) / self.tm * self.dt
         result = 0
-        if self.u[j] >= self.threshold or self.u[j] < self.u_rest:
+        if self.u[j] >= self.threshold :
             result = self.threshold - self.u_rest
             self.u[j] = self.u_rest
             #print("fire :", self.type, self.index, result)
@@ -32,7 +32,10 @@ class Neuron:
         if type == "exc":
             self.u[j] += value
         else:
-            self.u[j] -= value
+            if(self.u[j]>(-1)*(self.u_rest/3)):
+                self.u[j] -= value
+
+
 
 
 class Random_input:
