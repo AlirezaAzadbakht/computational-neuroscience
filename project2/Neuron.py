@@ -3,7 +3,8 @@ import random
 
 
 class Neuron:
-    def __init__(self, type="exc", index=0):  # exc/inh
+    def __init__(self, type="exc", index=0, group = 0):  # exc/inh
+        self.group = group
         self.index = index
         self.type = type
         self.time = 100
@@ -22,20 +23,19 @@ class Neuron:
     def update(self, j, input):
         self.u[j] += self.u[j - 1] + (-self.u[j - 1] + self.r * input) / self.tm * self.dt
         result = 0
-        if self.u[j] >= self.threshold :
+        if self.u[j] >= self.threshold:
             result = self.threshold - self.u_rest
             self.u[j] = self.u_rest
-            #print("fire :", self.type, self.index, result)
+
+            # print("fire :", self.type, self.index, result)
         return result
 
     def update_u(self, value, j):
-        if type == "exc":
+        if self.type == "exc":
             self.u[j] += value
         else:
-            if(self.u[j]>(-1)*(self.u_rest/3)):
+            if (self.u[j] > (-1) * (self.u_rest / 3)):
                 self.u[j] -= value
-
-
 
 
 class Random_input:
@@ -53,7 +53,7 @@ class Random_input:
             temp = self.last_i + temp * (self.i / 2)
         else:
             temp = self.last_i - temp * (self.i / 2)
-        if temp > self.i * 2 or temp <0:
+        if temp > self.i * 2 or temp < 0:
             temp = random.random() * (self.i)
         self.last_i = temp
         return temp

@@ -4,8 +4,8 @@ from project2.Neuron import Neuron
 from project2.Neuron import Random_input
 from matplotlib.pyplot import *
 
-excitatory_N = 200
-inhibitory_N = 800
+excitatory_N = 800
+inhibitory_N = 200
 N = excitatory_N + inhibitory_N
 
 group = []
@@ -34,17 +34,17 @@ y = [[-1 for x in range(N)] for y in range(len(group[0].timer))]
 yi = [0] * len(group[0].timer)
 x = group[0].timer
 
-Input_i = 1
+Input_i = 0.5
 
 i_gen = Random_input(i=Input_i, step=100)
 
 for i in range(len(group[0].timer)):
     print(round(i / len(group[0].timer), 4) * 100, "%")
     ## switch for fade input
-    # current_i = i_gen.get(i)
-    current_i = 0
-    if i < 100:
-        current_i = i_gen.get(i)
+    current_i = i_gen.get(i)
+    # current_i = 0
+    # if i < 100:
+    #     current_i = i_gen.get(i)
 
     yi[i] = current_i
 
