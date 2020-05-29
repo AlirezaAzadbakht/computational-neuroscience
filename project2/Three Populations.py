@@ -132,6 +132,6 @@ xlabel('Time')
 title('I-Time plot')
 ax.set_xlim(xmin=0, xmax=group[0].time)
 grid(True)
-# savefig('../figures/' + 'Population of ' + str(excitatory_N1) +" ,"+str(excitatory_N2) +  " Excitatory Neurons and " + str(
+# savefig('../project2/figures/' + 'Population of ' + str(excitatory_N1) +" ,"+str(excitatory_N2) +  " Excitatory Neurons and " + str(
 #     inhibitory_N) + " Inhibitory Neurons  fixed Connection2" + '.png')
 show()

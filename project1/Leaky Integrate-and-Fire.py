@@ -61,7 +61,7 @@ def lif(time=100, steps=0.125, i_function=i_interval, u_rest=0, r=1, c=10, i=5, 
         title('F-I plot')
         grid(True)
     if save_name != 'none':
-        savefig('../figures/{}.png'.format(save_name))
+        savefig('../project1/figures/{}.png'.format(save_name))
     show()
 
 
