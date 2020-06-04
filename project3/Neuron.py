@@ -28,23 +28,3 @@ class Neuron:
             self.u[j] = self.u_rest
         return result
 
-
-class Random_input:
-    def __init__(self, i=5, step=20):
-        self.last_i = 0
-        self.going_up = True
-        self.i = i
-        self.step = step
-
-    def get(self, iterate):
-        if iterate % 20 == 0:
-            self.going_up = not self.going_up
-        temp = random.random()
-        if self.going_up:
-            temp = self.last_i + temp * (self.i / 2)
-        else:
-            temp = self.last_i - temp * (self.i / 2)
-        if temp > self.i * 2 or temp < 0:
-            temp = random.random() * (self.i)
-        self.last_i = temp
-        return temp
