@@ -39,7 +39,7 @@ def get_input_spikes(i, freq_pattern1=10, freq_pattern2=5):
         state = 2
     elif i in [2401, 2403, 2405]:
         state = 1
-    elif i in [2500, 2501, 2502 , 2503,2504]:
+    elif i in [2500, 2501, 2502, 2503, 2504]:
         state = 0
     elif i > 2000:
         return [0] * n
@@ -87,10 +87,10 @@ d2 = []
 w3 = []
 d3 = []
 
-wh1 =1
-dh1=0
+wh1 = 1
+dh1 = 0
 wh2 = 1
-dh2=0
+dh2 = 0
 for i in range(n):
     w1.append(random.random())
     # w1.append(1)
@@ -121,10 +121,10 @@ y1 = []
 y2 = []
 y3 = []
 
-xh1 =[0]*simulation_length
-xh2 =[0]*simulation_length
-yh1 =[0]*simulation_length
-yh2=[0]*simulation_length
+xh1 = [0] * simulation_length
+xh2 = [0] * simulation_length
+yh1 = [0] * simulation_length
+yh2 = [0] * simulation_length
 for i in range(n):
     x1.append([0] * simulation_length)
     x2.append([0] * simulation_length)
@@ -150,29 +150,32 @@ delta_w1 = [0] * simulation_length
 delta_w2 = [0] * simulation_length
 delta_w3 = [0] * simulation_length
 
-# plot(w1 , color = 'g')
-# plot(w2, color = 'r')
-# ylabel('Weight')
-# xlabel('Input Connection Index')
-# title('Input Weights of Two Outputs Neurons - step:0')
-# green_patch = mpatches.Patch(color='green', label='Input Weights of Neuron 1')
-# red_patch = mpatches.Patch(color='red', label='Input Weights of Neuron 2')
-# legend(handles=[green_patch, red_patch])
-# savefig('../figures/project3/Input Weights Animation (fixed init)-step0.png')
-# show()
+plot(w1, color='g')
+plot(w2, color='r')
+plot(w3, color='b')
+ylabel('Weight')
+xlabel('Input Connection Index')
+title('Input Weights of Two Outputs Neurons and One Inhibitory Neuron - step:0')
+green_patch = mpatches.Patch(color='green', label='Input Weights of Neuron 1')
+red_patch = mpatches.Patch(color='red', label='Input Weights of Neuron 2')
+blue_patch = mpatches.Patch(color='blue', label='Input Weights of Inhibitory Neuron')
+legend(handles=[green_patch, red_patch, blue_patch])
+savefig('../figures/project3/Input Weights Animation with inhibitory test-step0.png')
+show()
 
 for current_time in range(simulation_length):
-    # if current_time % 200 == 0 and current_time<=2000:
-    #     plot(w1 , color = 'g')
-    #     plot(w2, color = 'r')
-    #     ylabel('Weight')
-    #     xlabel('Input Connection Index')
-    #     title('Input Weights of Two Outputs Neurons - step:'+str(current_time//200+1))
-    #     green_patch = mpatches.Patch(color='green', label='Input Weights of Neuron 1')
-    #     red_patch = mpatches.Patch(color='red', label='Input Weights of Neuron 2')
-    #     legend(handles=[green_patch, red_patch])
-    #     savefig('../figures/project3/Input Weights Animation (fixed init)-step'+str(current_time//200+1)+'.png')
-    #     show()
+    if current_time % 200 == 0 and current_time <= 2000:
+        plot(w1, color='g')
+        plot(w2, color='r')
+        plot(w3, color='b')
+        ylabel('Weight')
+        xlabel('Input Connection Index')
+        title('Input Weights of Two Outputs Neurons and One Inhibitory Neuron - step:' + str(current_time // 200 + 1))
+        green_patch = mpatches.Patch(color='green', label='Input Weights of Neuron 1')
+        blue_patch = mpatches.Patch(color='blue', label='Input Weights of Inhibitory Neuron')
+        legend(handles=[green_patch, red_patch, blue_patch])
+        savefig('../figures/project3/Input Weights Animation with inhibitory test-step' + str(current_time // 200 + 1) + '.png')
+        show()
     print(int(current_time / simulation_length * 10000) / 100, "%")
     fire_pattern = get_input_spikes(current_time)
     for i in range(n):
@@ -180,7 +183,7 @@ for current_time in range(simulation_length):
             update_queue[i].append(current_time)
 
     # output neuron 1
-    output1_fired =0
+    output1_fired = 0
     input_temp = 0
     for i in range(n):
         for past_fire_time in update_queue[i]:
@@ -198,14 +201,14 @@ for current_time in range(simulation_length):
         y_fire_pattern = 0
         if fired > 0:
             y_fire_pattern = 1
-            output1_fired =1
+            output1_fired = 1
         y1[i][current_time] = y1[i][current_time - 1] + ((-y1[i][current_time - 1]) / tau_minus + y_fire_pattern)
         if y1[i][current_time] < 0:
             y1[i][current_time] = 0
 
         ## W
         delta_w = (-a_minus * A_minus(w1[i - 1]) * y1[i][current_time - 1] * fire_pattern[i]) + (
-                    a_plus * A_plus(w1[i - 1]) * x1[i][current_time - 1] * y_fire_pattern)
+                a_plus * A_plus(w1[i - 1]) * x1[i][current_time - 1] * y_fire_pattern)
         w1[i] = w1[i] + delta_w
         if w1[i] < 0:
             w1[i] = 0.01
@@ -225,7 +228,7 @@ for current_time in range(simulation_length):
         ## Y
         y_fire_pattern = 0
         if fired > 0:
-            output2_fired=1
+            output2_fired = 1
             y_fire_pattern = 1
         y2[i][current_time] = y2[i][current_time - 1] + ((-y2[i][current_time - 1]) / tau_minus + y_fire_pattern)
         if y2[i][current_time] < 0:
@@ -233,7 +236,7 @@ for current_time in range(simulation_length):
 
         ## W
         delta_w = (-a_minus * A_minus(w2[i - 1]) * y2[i][current_time - 1] * fire_pattern[i]) + (
-                    a_plus * A_plus(w2[i - 1]) * x2[i][current_time - 1] * y_fire_pattern)
+                a_plus * A_plus(w2[i - 1]) * x2[i][current_time - 1] * y_fire_pattern)
         w2[i] = w2[i] + delta_w
         if w2[i] < 0:
             w2[i] = 0.01
@@ -244,17 +247,17 @@ for current_time in range(simulation_length):
         for past_fire_time in update_queue[i]:
             input_temp += w3[i] * spike_response_function(current_time - past_fire_time - d3[i])
     fired = inhibitory.update(j=current_time, input=input_temp)
-##################################################################################################################################
+    ##################################################################################################################################
     # lets inhibits others
-    y_fire_pattern=0
+    y_fire_pattern = 0
     if fired > 0:
         y_fire_pattern = 1
         update_queue_h.append(current_time)
     if fired > 0:
         print(fired)
         for past_fire_time in update_queue_h:
-            output1.update(j=current_time+1, input= -wh1 * spike_response_function(current_time - past_fire_time - dh1))
-            output2.update(j=current_time+1, input= -wh2 * spike_response_function(current_time - past_fire_time - dh2))
+            output1.update(j=current_time + 1, input=-wh1 * spike_response_function(current_time - past_fire_time - dh1))
+            output2.update(j=current_time + 1, input=-wh2 * spike_response_function(current_time - past_fire_time - dh2))
     # n 1
     # # X
     xh1[i] = xh1[i - 1] + ((-xh1[i - 1]) / tau_plus + output1_fired)
@@ -268,7 +271,7 @@ for current_time in range(simulation_length):
 
     # # W
     delta_w = (-a_minus * A_minus(wh1) * yh1[i - 1] * output1_fired) + (
-                a_plus * A_plus(wh1) * xh1[i - 1] * y_fire_pattern)
+            a_plus * A_plus(wh1) * xh1[i - 1] * y_fire_pattern)
     wh1 = wh1 + delta_w
 
     # n2
@@ -284,10 +287,10 @@ for current_time in range(simulation_length):
 
     # # W
     delta_w = (-a_minus * A_minus(wh1) * yh2[i - 1] * output2_fired) + (
-                a_plus * A_plus(wh1) * xh2[i - 1] * y_fire_pattern)
+            a_plus * A_plus(wh1) * xh2[i - 1] * y_fire_pattern)
     wh2 = wh2 + delta_w
 
-##################################################################################################################################
+    ##################################################################################################################################
     for i in range(n):
         ## X
         x3[i][current_time] = x3[i][current_time - 1] + ((-x3[i][current_time - 1]) / tau_plus + fire_pattern[i])
@@ -303,7 +306,7 @@ for current_time in range(simulation_length):
 
         ## W
         delta_w = (-a_minus * A_minus(w3[i - 1]) * y3[i][current_time - 1] * fire_pattern[i]) + (
-                    a_plus * A_plus(w3[i - 1]) * x3[i][current_time - 1] * y_fire_pattern)
+                a_plus * A_plus(w3[i - 1]) * x3[i][current_time - 1] * y_fire_pattern)
         w3[i] = w3[i] + delta_w
         if w3[i] < 0:
             w3[i] = 0.01
@@ -327,7 +330,7 @@ ylabel('U')
 xlabel('Time')
 title('Inhibitory Neuron')
 grid(True)
-# savefig('../figures/project3/Output Neurons (fixed init).png')
+savefig('../figures/project3/Output Neurons with inhibitory test.png')
 show()
 
 print("==")
