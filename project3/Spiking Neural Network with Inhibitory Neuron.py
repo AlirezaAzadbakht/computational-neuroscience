@@ -92,18 +92,18 @@ dh1 = 0
 wh2 = 1
 dh2 = 0
 for i in range(n):
-    w1.append(random.random())
-    # w1.append(1)
+    # w1.append(random.random())
+    w1.append(1)
     # d1.append(random.random())
     d1.append(1)
 
-    w2.append(random.random())
-    # w2.append(1)
+    # w2.append(random.random())
+    w2.append(1)
     # d2.append(random.random())
     d2.append(1)
 
-    w3.append(random.random())
-    # w3.append(1)
+    # w3.append(random.random())
+    w3.append(1)
     d3.append(0)
 
 update_queue = []
@@ -160,7 +160,7 @@ green_patch = mpatches.Patch(color='green', label='Input Weights of Neuron 1')
 red_patch = mpatches.Patch(color='red', label='Input Weights of Neuron 2')
 blue_patch = mpatches.Patch(color='blue', label='Input Weights of Inhibitory Neuron')
 legend(handles=[green_patch, red_patch, blue_patch])
-savefig('../figures/project3/Input Weights Animation with inhibitory test-step0.png')
+savefig('../figures/project3/Input Weights Animation with inhibitory test(fixed init)-step0.png')
 show()
 
 for current_time in range(simulation_length):
@@ -174,7 +174,7 @@ for current_time in range(simulation_length):
         green_patch = mpatches.Patch(color='green', label='Input Weights of Neuron 1')
         blue_patch = mpatches.Patch(color='blue', label='Input Weights of Inhibitory Neuron')
         legend(handles=[green_patch, red_patch, blue_patch])
-        savefig('../figures/project3/Input Weights Animation with inhibitory test-step' + str(current_time // 200 + 1) + '.png')
+        savefig('../figures/project3/Input Weights Animation with inhibitory test(fixed init)-step' + str(current_time // 200 + 1) + '.png')
         show()
     print(int(current_time / simulation_length * 10000) / 100, "%")
     fire_pattern = get_input_spikes(current_time)
@@ -330,7 +330,7 @@ ylabel('U')
 xlabel('Time')
 title('Inhibitory Neuron')
 grid(True)
-savefig('../figures/project3/Output Neurons with inhibitory test.png')
+savefig('../figures/project3/Output Neurons with inhibitory test(fixed init).png')
 show()
 
 print("==")
