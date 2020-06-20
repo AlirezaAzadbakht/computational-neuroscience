@@ -1,8 +1,8 @@
 # computational-neuroscience
 
 ## Project 1 :
-#### implementation of Leaky Integrate and Fire (LIF) Neuron model
-#### implementation of Exponential Leaky Integrate and Fire (ELIF) Neuron model
+implementation of Leaky Integrate and Fire (LIF) Neuron model
+implementation of Exponential Leaky Integrate and Fire (ELIF) Neuron model
 #### implementation of Adaptive ExponentialLeaky Integrate and Fire (Adaptive-ELIF) Neuron model
 #### and exploring the above models
     
