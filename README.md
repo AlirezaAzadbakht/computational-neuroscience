@@ -14,5 +14,5 @@ implementation of Spike-timing-dependent plasticity (STDP) learning rule
 <br />implementation of Spiking neural networks (SNN)
 <br />and exploring SNN with STDP learning rule in learing two spike pattern
     
-<br /><br />-full project definition and documentations are available in Doc folder (only in Farsi)
+<br /><br />-full project definition and documentations are available in docs folder (only in Farsi)
   
